@@ -1,0 +1,49 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Charts'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <dataSourceSelector [channel]="channel" [dataSources]="dataSources" (dataSourceChange)="dataSourceChanged($event)"></dataSourceSelector>
+            </div>
+            <div class="col-md-3">
+                <!-- <input type="text" class="form-control" name="daterangeInput" [options]="options" daterangepicker (selected)="selectedDate($event)"/> -->
+            </div>
+            <div class="col-md-3">
+                <!-- <input type="text" class="form-control" name="daterangeInput" [options]="options" daterangepicker (selected)="selectedDate($event)"/> -->
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-default btn-sm" (click)="refresh()">
+                    <span class="glyphicon glyphicon-refresh"></span> Refresh
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- /.panel-body -->
+    <div class="row">
+
+        <div class="col col-md12">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Line Chart
+                </div>
+                <div class="panel-body">
+                    <!-- <sensorDataChart [lineChartData]="humidityChartData" [lineChartLabels]="chartLabels"></sensorDataChart> -->
+                    <p>
+                        Last data received:
+                        <span>{{lastData }} </span>
+                    </p>
+
+                    <div #charts></div>
+                </div>
+                <!-- /.panel-body -->
+                <div class="card-body">
+                    <div *ngIf="loading">Loading</div>
+                    <app-loading-spinner [(show)]="loading"></app-loading-spinner>
+                    <!-- <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

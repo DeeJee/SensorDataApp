@@ -1,0 +1,3 @@
+<select class="form-control" (change)="dataSourceChanged($event)">
+        <option *ngFor="let ds of dataSources" value="{{ds.DeviceId}}">{{ds.DeviceId}} : {{ds.Description}}</option>
+</select>
