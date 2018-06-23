@@ -1,0 +1,3 @@
+npm install --save moment ngx-moment
+
+npm install ngx-bootstrap --save

@@ -16,6 +16,9 @@ import { SensorDataChartComponent } from '../sensordata-chart/sensordatachart.co
     animations: [routerTransition()]
 })
 export class ChanneldataComponent implements OnInit {
+    tab: string;
+    fromDate: any;
+    toDate: any;
     loading: boolean;
     startDate: any;
     endDate: any;
@@ -27,17 +30,21 @@ export class ChanneldataComponent implements OnInit {
     public chartLabels: any[] = [];
 
     @Input() public channel: number;
-    @ViewChild('charts', { read: ViewContainerRef }) container;
+    @ViewChild('dataCharts', { read: ViewContainerRef }) dataContainer;
+    @ViewChild('metadataCharts', { read: ViewContainerRef }) metadataContainer;
 
     constructor(private datasourceService: DatasourceService,
         private sensorDataService: CachingSensorDataService,
         private activatedRoute: ActivatedRoute,
         private componentFactoryResolver: ComponentFactoryResolver,
         private dataTypeService: DataTypeService) {
+        this.fromDate = new Date(2018, 2, 2);
+        this.toDate = new Date(2018, 4, 4);
 
     }
 
     ngOnInit() {
+        this.switchTab('data');
         this.activatedRoute.params.subscribe(params => {
             this.channel = params['id'];
             this.loadDatasources();
@@ -48,20 +55,26 @@ export class ChanneldataComponent implements OnInit {
         this.loadCharts(false);
     }
 
+    private switchTab(tab: string): void {
+        this.tab = tab;
+    }
+
     private loadDatasources() {
-        this.datasourceService.getDataSources(this.channel).subscribe(res => {
-            this.dataSources = res;
-            if (this.dataSources.length > 0) {
-                this.dataSource = this.dataSources[0];
-                this.loadCharts(false);
-            }
-        },
+        this.datasourceService.getDataSources(this.channel).subscribe(
+            res => {
+                this.dataSources = res;
+                if (this.dataSources.length > 0) {
+                    this.dataSource = this.dataSources[0];
+                    this.loadCharts(false);
+                }
+            },
             error => { },
             () => {
-                //console.log('getDataSources finished: ' + this.dataSources.length + " datasources found");
+                 console.log('getDataSources finished: ' + this.dataSources.length + " datasources found");
             });
     }
     private loadCharts(forceLoad: boolean) {
+        console.log('from: ' + this.fromDate);
         console.debug('voor call: startDate: ' + this.startDate + ', endDate: ' + this.endDate);
         this.loading = true;
         this.sensorDataService.getMostRecent(this.dataSource.DeviceId).subscribe(res => {
@@ -108,11 +121,19 @@ export class ChanneldataComponent implements OnInit {
 
                 //create a graph for each feed
                 const factory = this.componentFactoryResolver.resolveComponentFactory(SensorDataChartComponent);
-                this.container.clear();
+                this.dataContainer.clear();
+                this.metadataContainer.clear();
 
                 for (let property of properties) {
                     let feed = feeds.getValue(property);
-                    this.AddGraph(factory, property, feed, labels);
+                    if (["Voltage", "RSSI"].indexOf(property) > -1) {
+                        const ref = this.metadataContainer.createComponent(factory);
+                        this.AddGraph(ref, factory, property, feed, labels);
+                    }
+                    else {
+                        const ref = this.dataContainer.createComponent(factory);
+                        this.AddGraph(ref, factory, property, feed, labels);
+                    }
                 }
                 this.loading = false;
             }, err => null,
@@ -124,8 +145,7 @@ export class ChanneldataComponent implements OnInit {
         });
     }
 
-    private AddGraph(factory: any, key: string, data: any[], labels: any[]): void {
-        const ref = this.container.createComponent(factory);
+    private AddGraph(ref: any, factory: any, key: string, data: any[], labels: any[]): void {
         let instance = (<SensorDataChartComponent>ref.instance);
         instance.feed = key;
         instance.values = data;
@@ -133,7 +153,7 @@ export class ChanneldataComponent implements OnInit {
     }
 
     public refresh(): void {
-        this.loading=true;
-        //this.loadCharts(true);
+        this.loading = true;
+        this.loadCharts(true);
     }
 }

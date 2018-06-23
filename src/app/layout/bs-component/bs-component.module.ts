@@ -11,6 +11,7 @@ import {
     ModalComponent,
     CollapseComponent,
     DatePickerComponent,
+    SdDatePickerComponent,
     DropdownComponent,
     PaginationComponent,
     PopOverComponent,
@@ -38,6 +39,7 @@ import { PageHeaderModule } from '../../shared';
         ModalComponent,
         CollapseComponent,
         DatePickerComponent,
+        SdDatePickerComponent,
         DropdownComponent,
         PaginationComponent,
         PopOverComponent,
@@ -46,6 +48,8 @@ import { PageHeaderModule } from '../../shared';
         RatingComponent,
         TooltipComponent,
         TimepickerComponent
+    ],
+    exports:[
     ]
 })
 export class BsComponentModule {}

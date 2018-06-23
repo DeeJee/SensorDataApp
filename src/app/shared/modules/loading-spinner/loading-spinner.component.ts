@@ -9,10 +9,10 @@ export class LoadingSpinnerComponent implements OnInit {
 
   constructor() { }
 
+  @Input() message:string;
   @Input() show:boolean; 
 
   ngOnInit() {
-    console.log('loading: ' + this.show);
   }
 
 }

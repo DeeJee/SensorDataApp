@@ -5,15 +5,15 @@
         </a>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('channels')">
-                <span><i class="fa fa-fw fa-bar-chart-o"></i>&nbsp; {{ 'Channels' | translate }}</span>
+                <span><i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Channels' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'channels'">
                 <ul class="submenu">
                     <li>
-                        <a href="javascript:void(0)" routerLink="/channeldata/59"><span>{{'Light intensity' | translate }}</span></a>
+                        <a href="javascript:void(0)" routerLink="/channeldata/59"><span>{{ 'Light intensity' | translate }}</span></a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" routerLink="/channeldata/60"><span>{{'Temperature & Humidity' | translate }}</span></a>
+                        <a href="javascript:void(0)" routerLink="/channeldata/60"><span>{{ 'Temperature & Humidity' | translate }}</span></a>
                     </li>
                 </ul>
             </li>

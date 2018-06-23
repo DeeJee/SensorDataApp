@@ -13,6 +13,7 @@ import { CachingSensorDataService } from '../services/cachingsensordata.service'
 import { DataTypeService } from '../services/datatype.service';
 import { SensorDataChartComponent } from '../sensordata-chart/sensordatachart.component';
 import { LoadingSpinnerModule } from '../../../shared/modules/loading-spinner/loading-spinner.module';
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
     imports: [
@@ -21,20 +22,21 @@ import { LoadingSpinnerModule } from '../../../shared/modules/loading-spinner/lo
         ChanneldataRoutingModule,
         PageHeaderModule,
         FormsModule,
-        LoadingSpinnerModule
+        LoadingSpinnerModule,
+        MomentModule
     ],
     declarations: [
         ChanneldataComponent,
-        DataSourceSelectorComponent      ,
-        SensorDataChartComponent  
+        DataSourceSelectorComponent,
+        SensorDataChartComponent
     ],
-    providers:[
+    providers: [
         DatasourceService,
         QuerystringBuilderService,
         CachingSensorDataService,
         DataTypeService
     ],
-    entryComponents:[
+    entryComponents: [
         SensorDataChartComponent
     ]
 })
