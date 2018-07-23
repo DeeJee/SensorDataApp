@@ -15,6 +15,24 @@
                     <li>
                         <a href="javascript:void(0)" routerLink="/channeldata/60"><span>{{ 'Temperature & Humidity' | translate }}</span></a>
                     </li>
+                    <li>
+                        <a href="javascript:void(0)" routerLink="/channeldata/61"><span>{{ 'Plant watering' | translate }}</span></a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('datasources')">
+                <span><i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Datasources' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'datasources'">
+                <ul class="submenu">
+                    <li>
+                        <a href="javascript:void(0)" routerLink="/adddatasources"><span>{{ 'Opvoeren' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" routerLink="/managedatasources"><span>{{ 'Beheren' | translate }}</span></a>
+                    </li>
                 </ul>
             </li>
         </div>

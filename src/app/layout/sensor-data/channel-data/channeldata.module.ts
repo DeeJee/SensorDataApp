@@ -14,7 +14,8 @@ import { DataTypeService } from '../services/datatype.service';
 import { SensorDataChartComponent } from '../sensordata-chart/sensordatachart.component';
 import { LoadingSpinnerModule } from '../../../shared/modules/loading-spinner/loading-spinner.module';
 import { MomentModule } from 'ngx-moment';
-
+import { BsComponentModule } from '../../bs-component/bs-component.module';
+//import {OverlayModule} from 'angular-io-overlay';
 @NgModule({
     imports: [
         CommonModule,
@@ -23,7 +24,9 @@ import { MomentModule } from 'ngx-moment';
         PageHeaderModule,
         FormsModule,
         LoadingSpinnerModule,
-        MomentModule
+        MomentModule,
+        BsComponentModule,
+        //OverlayModule 
     ],
     declarations: [
         ChanneldataComponent,

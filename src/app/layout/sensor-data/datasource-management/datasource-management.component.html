@@ -1,0 +1,51 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <i class="fa fa-bar-chart-o fa-fw"></i> Manage datasources
+    <div class="pull-right">  
+    </div>
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-3">
+        <label class="form-control">DeviceId</label>
+      </div>
+      <div class="col-md-4">
+        <label class="form-control">Type</label>
+      </div>
+      <div class="col-md-4">
+        <label class="label label-default">Description</label>
+      </div>
+    </div>
+
+    <div class="row" *ngFor="let ds of dataSources">
+      <div class="col-md-1">
+        <a class="btn btn-info btn-md" (click)="delete(ds.Id)">
+          <span class="fa fa-trash-o"></span> Trash
+        </a>
+      </div>
+      <div class="col-md-3">
+        <label class="form-control">{{ds.DeviceId}}</label>
+      </div>
+      <div class="col-md-4">
+        <select class="form-control" [(ngModel)]="ds.DataTypeId">
+          <option *ngFor="let type of dataSourceTypes" value="{{type.Id}}">{{type.Name}}</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <input type="text" [(ngModel)]="ds.Description" class="form-control">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <input type="button" class="btn btn-default" (click)="save()" value="save">
+      </div>
+    </div>
+
+  </div>
+  <!-- /.panel-body -->
+</div>
+<!-- /.panel -->

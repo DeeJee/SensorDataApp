@@ -11,6 +11,11 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { AdalService } from 'adal-angular4/adal.service';
 
+import { SignalRModule } from 'ng2-signalr';
+import { SignalRConfiguration } from 'ng2-signalr';
+import { environment } from '../environments/environment.prod';
+
+
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
     /* for development
@@ -22,8 +27,23 @@ export const createTranslateLoader = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 };
 
+export function createConfig(): SignalRConfiguration {
+    const c = new SignalRConfiguration();
+    c.hubName = 'SensorDataHub';
+    c.url = 'https://iotsensordata.azurewebsites.net:443';
+    //c.url = 'https://localhost:44374';
+    c.logging = false;
+
+    // >= v5.0.0
+    c.executeEventsInZone = true; // optional, default is true
+    c.executeErrorsInZone = false; // optional, default is false
+    c.executeStatusChangeInZone = true; // optional, default is true
+    return c;
+}
+
 @NgModule({
     imports: [
+        SignalRModule.forRoot(createConfig),
         CommonModule,
         BrowserModule,
         BrowserAnimationsModule,
@@ -41,7 +61,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     providers: [
         AuthGuard,
         AdalService
-        ],
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

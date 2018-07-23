@@ -1,8 +1,10 @@
+import { SignalRConfiguration } from "ng2-signalr";
+
 export const environment = {
   production: true,
   services: {
     sensorDataService: {
-      host: "https://iotsensordata.azurewebsites.net",
+      host: "https://iotsensordata.azurewebsites.net:443",
       baseUrl: "/api"
     }
   },

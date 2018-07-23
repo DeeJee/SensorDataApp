@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
+import { AddDatasourceComponent } from './sensor-data/add-datasource/add-datasource.component';
+import { SensorDataModule } from './sensor-data/sensor-data.module';
+import { DatasourceManagementComponent } from './sensor-data/datasource-management/datasource-management.component';
 
 const routes: Routes = [
     {
@@ -16,13 +19,18 @@ const routes: Routes = [
             { path: 'bs-element', loadChildren: './bs-element/bs-element.module#BsElementModule' },
             { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
-            { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' }
+            { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
+
+            { path: 'adddatasources', component: AddDatasourceComponent },
+            { path: 'managedatasources', component: DatasourceManagementComponent }
         ]
     }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
+    imports: [RouterModule.forChild(routes),
+        SensorDataModule
+    ],
     exports: [RouterModule]
 })
 export class LayoutRoutingModule { }

@@ -1,0 +1,45 @@
+<div class="panel-heading">
+  <i class="fa fa-bar-chart-o fa-fw"></i> Register datasources
+  <div class="pull-right">
+
+  </div>
+</div>
+<!-- /.panel-heading -->
+<div class="panel-body">
+
+  <!-- <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner> -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">DeviceId</th>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ds of dataSources">
+        <td>{{ds.DeviceId}}</td>
+        <td>
+          <select class="form-control" [(ngModel)]="ds.DataTypeId" (ngModelChange)="dataTypeSelected($event, ds)">
+            <option *ngFor="let dataType of dataTypes" value="{{dataType.Id}}">{{dataType.Name}}</option>
+          </select>
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="ds.Description" class="form-control">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+  <div class="row">
+    <div class="col-md-4">
+      <input type="button" class="btn btn-outline-primary" (click)="save()" value="Register">
+    </div>
+  </div>
+</div>
+<!-- /.panel-body -->
+
+<!-- /.panel -->

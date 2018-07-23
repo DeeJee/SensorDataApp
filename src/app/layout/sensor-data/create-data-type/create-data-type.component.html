@@ -1,0 +1,25 @@
+
+    <div>
+      <label>{{label}}</label>
+    </div>
+  <div >
+    <label>Name</label>
+  </div>
+  <div >
+      <input mdInput type="text" #name>
+  </div>
+  <div >
+    <label>Properties</label>
+  </div>
+  <div >
+    <label>{{properties}}</label>
+  </div>
+  <div *ngIf="error"  class="alert alert-danger">
+    {{error}}
+  </div>
+  <div >
+    <div md-dialog-actions>
+      <button md-button class='popup-button' (click)="save({name: name.value})" >Ok</button>
+      <button md-button class='popup-button' (click)="cancel()">Cancel</button>
+    </div>
+  </div>

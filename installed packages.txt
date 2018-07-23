@@ -1,3 +1,5 @@
 npm install --save moment ngx-moment
 
 npm install ngx-bootstrap --save
+npm i angular-io-overlay --save
+npm install ng2-signalr jquery signalr --save

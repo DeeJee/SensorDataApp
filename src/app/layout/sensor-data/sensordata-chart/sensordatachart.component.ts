@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from "rxjs";
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Series } from './series';
+import { DataModel } from '../../models/datamodel';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { Series } from './series';
   template: `
   <div style="display: block;">
 
-    <canvas baseChart 
+    <canvas id="myChart" baseChart 
                 [datasets]="lineChartData"
                 [labels]="lineChartLabels"
                 [options]="lineChartOptions"
@@ -21,18 +21,34 @@ import { Series } from './series';
   </div>
   `
 })
+
 export class SensorDataChartComponent implements OnInit {
+  constructor() { }
+
   ngOnInit(): void {
     this.lineChartData.push(new Series(this.feed, this.values));
   }
+
 
   errorMessages: any;
   public loading: boolean;
   @Input() public values: any[];
   @Input() public feed: string;
+  @Input() public datasource: string;
 
-  @Input() public lineChartData: Series[]=[];
+  @Input() public lineChartData: Series[] = [];
   @Input() public lineChartLabels: any[] = [];
+
+  public addDatapoint(data: DataModel): void {
+      this.lineChartData = [];
+
+      let val = data.Payload[this.feed];
+      this.values.push(val);
+      this.lineChartLabels.push(data.TimeStamp);
+
+      this.lineChartData.push(new Series(this.feed, this.values));
+  }
+
   public lineChartOptions: any = {
     responsive: true,
     scales: {

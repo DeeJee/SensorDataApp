@@ -23,11 +23,6 @@ export class CachingSensorDataService {
         let url = this.sensorDataUrl.concat(dataSource);
         console.debug('in call van: ' + van + ', tot: ' + tot);
 
-        let index=0;
-        while(index<100000){
-            index++;
-        }
-
         let params: NameValuePair[] = [];
         if (van) {
             params.push(new NameValuePair('van', van));

@@ -4,7 +4,7 @@
 @import "utils";
 @import "rtl";
 @import "responsive";
-
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @media print {
     .breadcrumb {
         display: none !important;

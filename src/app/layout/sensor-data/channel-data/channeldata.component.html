@@ -4,15 +4,29 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-3">
-                <dataSourceSelector [channel]="channel" [dataSources]="dataSources" (dataSourceChange)="dataSourceChanged($event)"></dataSourceSelector>
+                Bron
             </div>
-            <div class="col-md-6">
-                <!-- <sd-date-picker></sd-date-picker> -->
-                <!-- <app-date-range-picker [(fromDate)]="fromDate" [(toDate)]="toDate" ></app-date-range-picker> -->
-                <input id="dateRange" name="dateRange" [(ngModel)]="dateRange" type="text" bsDaterangePicker class="form-control">
+            <div class="col-md-2">
+                Van
+            </div>
+            <div class="col-md-2">
+                Tot
             </div>
             <div class="col-md-3">
-                <button type="button" class="btn btn-default btn-sm" (click)="refresh()">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <dataSourceSelector [channel]="channel"  (dataSourceChange)="dataSourceChanged($event)"></dataSourceSelector>
+            </div>
+            <div class="col-md-2">
+                <sd-date-picker #fromPicker></sd-date-picker>
+            </div>
+            <div class="col-md-2">
+                <sd-date-picker #toPicker></sd-date-picker>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-default" (click)="refresh()">
                     <span class="fa fa-refresh"></span> Refresh
                 </button>
             </div>
@@ -35,29 +49,29 @@
                     </p>
 
                     <ul class="nav nav-tabs">
-                        <li class="nav-item" >
+                        <li class="nav-item">
                             <a class="nav-link" [class.active]="tab=='data'" (click)="switchTab('data')">Data</a>
                         </li>
-                        <li class="nav-item" >
+                        <li class="nav-item">
                             <a class="nav-link" [class.active]="tab=='metadata'" (click)="switchTab('metadata')">Metadata</a>
                         </li>
                     </ul>
 
                     <div class="card-body">
-                            <div *ngIf="loading">
-                                <app-loading-spinner [(show)]="loading" message="loading"></app-loading-spinner>
-                            </div>
+                        <div *ngIf="loading">
+                            <app-loading-spinner [(show)]="loading" message="loading"></app-loading-spinner>
                         </div>
+                    </div>
                     <div class="container fill" [hidden]="tab!='data'">
-                         <div #dataCharts></div>
+                        <div #dataCharts></div>
                     </div>
                     <div class="container fill" [hidden]="tab!='metadata'">
                         <div #metadataCharts></div>
                     </div>
-                  
+
 
                 </div>
-                <!-- /.panel-body -->              
+                <!-- /.panel-body -->
             </div>
         </div>
     </div>

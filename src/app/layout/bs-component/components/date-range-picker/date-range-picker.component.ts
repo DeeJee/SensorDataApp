@@ -23,7 +23,8 @@ const after = (one: NgbDateStruct, two: NgbDateStruct) =>
 })
 export class DateRangePickerComponent implements OnInit {
   ngOnInit(): void {
-    let aap=1;
+    let aap=this.fromDate;
+     //this.fromDate = this.fromDate;
   }
 
   hoveredDate: NgbDateStruct;
@@ -32,8 +33,8 @@ export class DateRangePickerComponent implements OnInit {
   @Input() toDate: NgbDateStruct;
 
   constructor(calendar: NgbCalendar) {
-    //this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+    // this.fromDate = calendar.getToday();
+    // this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
 
   onDateSelection(date: NgbDateStruct) {
@@ -45,7 +46,13 @@ export class DateRangePickerComponent implements OnInit {
       this.toDate = null;
       this.fromDate = date;
     }
-    console.log('selection made');
+
+    if(this.fromDate){
+      console.log(`From: ${this.fromDate.toString()}`);  
+    }
+    if(this.toDate){
+      console.log(`To: ${this.toDate.toString()}`);  
+    }
   }
 
   isHovered = date => this.fromDate && !this.toDate && this.hoveredDate && after(date, this.fromDate) && before(date, this.hoveredDate);

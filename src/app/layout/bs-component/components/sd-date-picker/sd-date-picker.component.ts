@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'sd-date-picker',
@@ -6,13 +7,9 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./sd-date-picker.component.scss']
 })
 export class SdDatePickerComponent implements OnInit {
-    model: any;
+    @Output() model: NgbDateStruct;
     constructor() { }
 
     ngOnInit() {
-    }
-    
-    click(event: any): void {
-console.log(event);
     }
 }

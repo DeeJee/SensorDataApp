@@ -1,12 +1,12 @@
 <div class="card-body">
     <div class="list-group">
-        <a href="#" class="list-group-item clearfix d-block"  *ngFor="let notification of notifications">
+        <a href="javascript:void(0)" class="list-group-item clearfix d-block"  *ngFor="let notification of notifications">
             <i class="fa fa-comment fa-fw"></i> 
             <strong>{{notification.DeviceId}}:</strong> {{notification.Text}}
         
             <span class="float-right text-muted small">
                 <em>{{notification.Created}}</em>
-                &nbsp;<a class="fa fa-trash-o" (click)="delete(notification.Id)"></a>
+                &nbsp;<a href="javascript:void(0)" class="fa fa-trash-o" (click)="delete(notification.Id)"></a>
             </span>
         </a>
     </div>

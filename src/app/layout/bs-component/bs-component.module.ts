@@ -19,7 +19,8 @@ import {
     TabsComponent,
     RatingComponent,
     TooltipComponent,
-    TimepickerComponent
+    TimepickerComponent,
+    DateRangePickerComponent
 } from './components';
 import { PageHeaderModule } from '../../shared';
 
@@ -47,9 +48,13 @@ import { PageHeaderModule } from '../../shared';
         TabsComponent,
         RatingComponent,
         TooltipComponent,
-        TimepickerComponent
+        TimepickerComponent,
+        DateRangePickerComponent,
+        SdDatePickerComponent
     ],
     exports:[
+        DateRangePickerComponent,
+        SdDatePickerComponent
     ]
 })
 export class BsComponentModule {}

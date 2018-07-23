@@ -1,8 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-//import { NgForm } from '@angular/forms';
-import { Observable } from "rxjs";
 import { SensorDataService } from '../services/sensordata.service';
 import { Datasource } from '../../models/datasource';
+import { DatasourceService } from '../services/datasource.service';
 
 @Component({
   providers: [SensorDataService],
@@ -16,8 +15,10 @@ export class DataSourceSelectorComponent implements OnInit {
   @Input() public channel: number;
   @Input() public dataSources: Datasource[];
 
+  constructor(private datasourceService: DatasourceService) {}
+
   ngOnInit(): void {
-    this.sensorDataService.getDataSources(this.channel).subscribe(res => {
+    this.datasourceService.getDataSources(this.channel).subscribe(res => {
       this.dataSources = res;
       if (this.dataSources.length > 0) {
         this.selectedDataSourceChange.emit(this.dataSources[0]);
@@ -30,8 +31,6 @@ export class DataSourceSelectorComponent implements OnInit {
         console.debug("datasources: channel: " + this.channel);
       });
 
-  }
-  constructor(private sensorDataService: SensorDataService) {
   }
 
   public dataSourceChanged(event: any): void {
